@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "calc.cpp" // here we include the code to be tested
+#include "calc.h" // here we include the code to be tested
 TEST(SumTest, BasicTest) {
 EXPECT_EQ(sum(1,2), 3);
 }
