@@ -17,17 +17,17 @@ enable_testing()
 
 # Source files
 set(SOURCE_FILES
-        src/calc.cpp # this is where the code we want to test
-        src/calc.h)
+        src/BloomFilter.cpp # this is where the code we want to test
+        src/BloomFilter.h)
 
 # Test files
 set(TEST_FILES
         tests/test_main.cpp # this is the main for tests
-        tests/calc_test.cpp # this file contains the tests
+        tests/BloomFilter_test.cpp # this file contains the tests
         )
 
 # Create the test executable
-add_executable(CalcTests ${TEST_FILES} ${SOURCE_FILES} src/calc.h)
+add_executable(CalcTests ${TEST_FILES} ${SOURCE_FILES} src/BloomFilter.h)
 
 # Link Google Test to the test executable
 target_link_libraries(CalcTests PRIVATE gtest gtest_main)
