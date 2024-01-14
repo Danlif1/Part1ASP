@@ -4,10 +4,19 @@
 
 #ifndef PROJECT_PART_1_CALC_H
 #define PROJECT_PART_1_CALC_H
+#include "HashFunction.h"
+#pragma once
 using namespace std;
 // calc.h
-#pragma once
+    long add_url(string added_url);
 
-bool add_url(string added_url);
+
+
+
+
+
+
+
+    long add_url(string added_url);
 
 #endif //PROJECT_PART_1_CALC_H

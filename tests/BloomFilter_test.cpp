@@ -3,7 +3,10 @@
 //
 
 #include <gtest/gtest.h>
-#include "BloomFilter.h" // here we include the code to be tested
+#include "BloomFilter.cpp" // here we include the code to be tested
+#include "BloomFilter.h"
+
 TEST(SumTest, BasicTest) {
-EXPECT_EQ(add_url("www.example.com"), true);
+BloomFilter filter = BloomFilter();
+EXPECT_EQ(filter.add_url("www.example.com"), true);
 }

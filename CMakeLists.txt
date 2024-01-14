@@ -18,16 +18,29 @@ enable_testing()
 # Source files
 set(SOURCE_FILES
         src/BloomFilter.cpp # this is where the code we want to test
-        src/BloomFilter.h)
+        src/BloomFilter.h
+        src/HashOnce.cpp
+        src/HashTwice.cpp
+        src/HashFunction.h
+)
 
 # Test files
 set(TEST_FILES
         tests/test_main.cpp # this is the main for tests
-        tests/BloomFilter_test.cpp # this file contains the tests
+        tests/BloomFilter_test.cpp
+        src/HashFunction.h
+        src/HashOnce.h
+        src/HashTwice.h
+        # this file contains the tests
         )
 
 # Create the test executable
-add_executable(CalcTests ${TEST_FILES} ${SOURCE_FILES} src/BloomFilter.h)
+add_executable(CalcTests ${TEST_FILES} ${SOURCE_FILES} src/BloomFilter.h
+        src/BloomFilter.cpp # this is where the code we want to test
+        src/BloomFilter.h
+        src/HashOnce.cpp
+        src/HashTwice.cpp
+)
 
 # Link Google Test to the test executable
 target_link_libraries(CalcTests PRIVATE gtest gtest_main)
