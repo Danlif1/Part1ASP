@@ -3,36 +3,34 @@
 //
 #include <string>
 #include <iostream>
-#include <vector>
-#include "BloomFilter.h"
+#include "BloomFilter.cpp"
 using namespace std;
 int main(int argc, char** argv){
 
 
     int task;
-    cin >> task;
+    string url;
+    BloomFilter filter = BloomFilter();
+    cin>>task;
+
     while (true){
     switch(task) {
         case (1): {
-            string url;
             cin >> url;
-           // bloom_filter.add_url(url);
+            filter.add_url(url);
+            cin>>task;
+            break;
         }
 
         case (2): {
-      //      bloom_filter.check_if_blacklisted(url);
+            cin >> url;
+             filter.check_if_blacklisted(url);
+            cin>>task;
+            break;
         }
         default: {
-            cout << "Invalid task" << endl;
+            cout<<"invalid input, please try again";
         }
-
     }
 }
-
-
-
-
-
-
-
 }

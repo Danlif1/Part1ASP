@@ -26,7 +26,8 @@ set(SOURCE_FILES
 
 # Test files
 set(TEST_FILES
-        tests/test_main.cpp # this is the main for tests
+        # this is the main for tests
+        tests/test_main.cpp
         tests/BloomFilter_test.cpp
         src/HashFunction.h
         src/HashOnce.h
