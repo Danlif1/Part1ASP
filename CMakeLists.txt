@@ -58,3 +58,28 @@ endif()
 # Discover and run tests using Google Test
 include(GoogleTest)
 gtest_discover_tests(CalcTests)
+#
+#cmake_minimum_required(VERSION 3.14)
+#project("Part1ASP") # Replace “Part1ASP” with your project name
+#
+#set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#
+## Source files
+#set(SOURCE_FILES
+#        src/BloomFilter.cpp
+#        src/HashOnce.cpp
+#        src/HashTwice.cpp
+#        src/main.cpp # Add your main.cpp file here
+#        src/HashFunction.h
+#        src/BloomFilter.h
+#        )
+#
+## Create the main executable
+#add_executable(MainExecutable ${SOURCE_FILES})
+#
+## Additional configuration for macOS
+#if(APPLE)
+#    find_package(Threads REQUIRED)
+#    target_link_libraries(MainExecutable PRIVATE Threads::Threads)
+#endif()
