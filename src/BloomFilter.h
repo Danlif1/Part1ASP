@@ -34,5 +34,7 @@ class BloomFilter {
         vector<string> get_url_blacklist();
         // Checking if a url is blacklisted.
         string check_if_blacklisted(string checked_url);
+        // Destructor.
+        ~BloomFilter();
 };
 #endif //PART1ASP_BLOOMFILTER_H

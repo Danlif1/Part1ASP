@@ -22,7 +22,7 @@ set(SOURCE_FILES
         src/HashOnce.cpp
         src/HashTwice.cpp
         src/HashFunction.h
-)
+        )
 
 # Test files
 set(TEST_FILES

@@ -94,3 +94,10 @@ string BloomFilter::check_if_blacklisted(string checked_url){
     answer += "false";
     return answer;
 }
+
+
+BloomFilter::~BloomFilter() {
+    for (HashFunction* hash : hash_functions) {
+        delete hash;
+    }
+}
