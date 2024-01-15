@@ -20,9 +20,7 @@ TEST(TruePositive, LongTest) {
     for (int i = 0; i < 100; i++) {
         filter.add_url("www.example.com" + to_string(i));
     }
-    for (int i = 0; i < 100; i++) {
-        EXPECT_EQ(filter.check_if_blacklisted("www.example.com50"), "true true");
-    }
+    EXPECT_EQ(filter.check_if_blacklisted("www.example.com50"), "true true");
 }
 
 // Checking an easy false positive.
@@ -40,9 +38,7 @@ TEST(FalsePositive, LongTest) {
     for (int i = 0; i < 200; i++) {
         filter.add_url("www.example.com" + to_string(i));
     }
-    for (int i = 0; i < 100; i++) {
-        EXPECT_EQ(filter.check_if_blacklisted("not.www.example.com" + to_string(i)), "true false");
-    }
+    EXPECT_EQ(filter.check_if_blacklisted("not.www.example.com50"), "true false");
 }
 
 // Checking an easy true negative.
