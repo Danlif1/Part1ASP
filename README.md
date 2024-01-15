@@ -49,3 +49,7 @@ holds the code for the docker.
 
 Holds the code for the compiler to run using tests.
 If you want to run the code through the terminal without tests go to the file and all the code without # turn to # and all the code with # turn to without.
+
+
+
+(TESTING CI/CD)
