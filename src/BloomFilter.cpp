@@ -46,7 +46,7 @@ BloomFilter::BloomFilter(int size_of_filter,int func1, int func2){
     } else {
         this->hash_functions.push_back(new HashTwice);
     }
-    this->filter =  vector<bool>(size_of_filter);
+    this->filter =  vector<bool>(bloom_filter_size);
 }
 
 // Getting the blacklisted urls in a vector format.
