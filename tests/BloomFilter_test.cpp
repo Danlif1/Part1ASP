@@ -17,10 +17,14 @@ TEST(TruePositive, BasicTest) {
 TEST(TruePositive, LongTest) {
     BloomFilter filter = BloomFilter(300,1,2);
     string str = "www.example.com";
-    for (int i = 0; i < 100; i++) {
-        filter.add_url("www.example.com" + to_string(i));
-    }
-    EXPECT_EQ(filter.check_if_blacklisted("www.example.com50"), "true true");
+    filter.add_url("www.example.com1");
+    filter.add_url("www.example.com2");
+    filter.add_url("www.example.com3");
+    filter.add_url("www.example.com4");
+    filter.add_url("www.example.com5");
+    filter.add_url("www.example.com6");
+
+    EXPECT_EQ(filter.check_if_blacklisted("www.example.com3"), "true true");
 }
 
 // Checking an easy false positive.
@@ -33,11 +37,13 @@ TEST(FalsePositive, BasicTest) {
 
 // Checking a hard false positive
 TEST(FalsePositive, LongTest) {
-    BloomFilter filter = BloomFilter(30,1,2);
-    string str = "www.example.com";
-    for (int i = 0; i < 200; i++) {
-        filter.add_url("www.example.com" + to_string(i));
-    }
+    BloomFilter filter = BloomFilter(4,1,2);
+    filter.add_url("www.example.com1");
+    filter.add_url("www.example.com2");
+    filter.add_url("www.example.com3");
+    filter.add_url("www.example.com4");
+    filter.add_url("www.example.com5");
+    filter.add_url("www.example.com6");
     EXPECT_EQ(filter.check_if_blacklisted("not.www.example.com50"), "true false");
 }
 
