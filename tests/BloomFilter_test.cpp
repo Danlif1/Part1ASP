@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "BloomFilter.cpp" // here we include the code to be tested
+#include "BloomFilter.h" // here we include the code to be tested
 #include "BloomFilter.h"
 
 TEST(SumTest, BasicTest) {

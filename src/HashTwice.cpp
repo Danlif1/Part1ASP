@@ -4,13 +4,11 @@
 
 #include <string>
 #include "HashFunction.h"
+#include "HashTwice.h"
 
 using namespace std;
-class HashTwice: public HashFunction {
-public:
-     long hash_url(string url) override {
+     long HashTwice:: hash_url(string url)  {
         // Use standard hash and hash url twice.
         std::hash <string> hasher;
         return hasher(to_string(hasher(url)));
     }
-};

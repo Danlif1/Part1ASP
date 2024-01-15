@@ -5,11 +5,8 @@
 #include "HashFunction.h"
 #include "HashOnce.h"
 
-class HashOnce: public HashFunction{
-    public:
-        long hash_url(string url) override{
+        long  HashOnce:: hash_url(string url){
             // Use standard hash and hash url once
             std::hash<string> hasher;
             return hasher(url);
     }
-};
