@@ -25,4 +25,4 @@ jobs:
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         rm -Rf build/
         docker build -t part1asp .
-        docker push danlif1/part1asp:latest
+        docker push part1asp:latest
