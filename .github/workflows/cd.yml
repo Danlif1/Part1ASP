@@ -23,5 +23,7 @@ jobs:
       run: |
         docker buildx create --use
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-        docker buildx build --platform linux/amd64,linux/arm64 -t danlif1/part1asp:latest .
+        cd ../..
+        rm -Rf build/
+        docker build -t part1asp .
         docker push danlif1/part1asp:latest
