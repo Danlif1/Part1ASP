@@ -1,6 +1,6 @@
 # Part1ASP
 
-## Made by Daniel Lifshitz, And Itamar Berger (Before he got צו 8)
+## Made by Daniel Lifshitz, Itamar Berger (Before he got צו 8), Yishai Nisim (Who was exempted from this part)
 
 ### In this part we implemented Bloom filter.
 
