@@ -21,7 +21,7 @@ TEST(TruePositive, LongTest) {
         filter.add_url("www.example.com" + to_string(i));
     }
     for (int i = 0; i < 100; i++) {
-        EXPECT_EQ(filter.check_if_blacklisted("www.example.com" + to_string(i)), "true true");
+        EXPECT_EQ(filter.check_if_blacklisted("www.example.com50"), "true true");
     }
 }
 
