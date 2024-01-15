@@ -23,5 +23,5 @@ jobs:
       run: |
         docker buildx create --use
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-        docker buildx build --platform linux/amd64,linux/arm64 -t danlif1/your-image-name:latest .
-        docker push your-dockerhub-username/your-image-name:latest
+        docker buildx build --platform linux/amd64,linux/arm64 -t danlif1/Part1ASP:latest .
+        docker push danlif1/Part1ASP:latest

@@ -37,21 +37,21 @@ BloomFilter::BloomFilter(){
 BloomFilter::BloomFilter(int size_of_filter,int func1, int func2){
     bloom_filter_size = size_of_filter;
     if (func1 == 1) {
-        this->hash_functions.push_back(new HashOnce);
+        hash_functions.push_back(new HashOnce);
     } else {
-        this->hash_functions.push_back(new HashTwice);
+        hash_functions.push_back(new HashTwice);
     }
     if (func2 == 1) {
-        this->hash_functions.push_back(new HashOnce);
+        hash_functions.push_back(new HashOnce);
     } else {
-        this->hash_functions.push_back(new HashTwice);
+        hash_functions.push_back(new HashTwice);
     }
-    this->filter =  vector<bool>(bloom_filter_size);
+    filter =  vector<bool>(bloom_filter_size);
 }
 
 // Getting the blacklisted urls in a vector format.
 vector<string> BloomFilter::get_url_blacklist(){
-    return this->url_blacklist;
+    return url_blacklist;
 }
 
 /**
@@ -60,7 +60,7 @@ vector<string> BloomFilter::get_url_blacklist(){
  */
 void  BloomFilter::add_url(string added_url) {
     // add current url to blacklist (list of explicit urls).
-    this->url_blacklist.push_back(added_url);
+    url_blacklist.push_back(added_url);
 
     // Perform hashing to url using all functions of current filter and add them to the bloom filter.
     for (HashFunction* hash : hash_functions) {
@@ -85,7 +85,7 @@ string BloomFilter::check_if_blacklisted(string checked_url){
     }
     answer = "true ";
     // Iterate through blacklist, and search for checked url.
-    for(string s : this->get_url_blacklist()) {
+    for(string s : get_url_blacklist()) {
         if (s == checked_url) {
             answer += "true";
             return answer;

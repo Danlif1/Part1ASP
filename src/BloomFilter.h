@@ -29,6 +29,7 @@ class BloomFilter {
         BloomFilter();
         // Non default contractor, gets the size of the bloom filter and
         BloomFilter(int size_of_filter,int func1, int func2);
+        // Adding the url to the blacklist.
         void add_url(string added_url);
         // Getting the blacklisted urls in a vector format.
         vector<string> get_url_blacklist();

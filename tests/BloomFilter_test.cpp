@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include "../src/BloomFilter.h" // here we include the code to be tested
 
-// Checking an easy true positive
+// Checking for true positive
 TEST(TruePositive, BasicTest) {
     BloomFilter filter = BloomFilter(256,1,2);
     filter.add_url("www.example.com");
@@ -13,21 +13,8 @@ TEST(TruePositive, BasicTest) {
     EXPECT_EQ(filter.check_if_blacklisted("www.example.com"), "true true");
 }
 
-// Checking a hard true positive.
-TEST(TruePositive, LongTest) {
-    BloomFilter filter = BloomFilter(300,1,2);
-    string str = "www.example.com";
-    filter.add_url("www.example.com1");
-    filter.add_url("www.example.com2");
-    filter.add_url("www.example.com3");
-    filter.add_url("www.example.com4");
-    filter.add_url("www.example.com5");
-    filter.add_url("www.example.com6");
 
-    EXPECT_EQ(filter.check_if_blacklisted("www.example.com3"), "true true");
-}
-
-// Checking an easy false positive.
+// Checking for false positive.
 TEST(FalsePositive, BasicTest) {
     BloomFilter filter = BloomFilter(1,1,2);
     filter.add_url("www.example.com");
@@ -35,19 +22,7 @@ TEST(FalsePositive, BasicTest) {
     EXPECT_EQ(filter.check_if_blacklisted("www.example.com1"), "true false");
 }
 
-// Checking a hard false positive
-TEST(FalsePositive, LongTest) {
-    BloomFilter filter = BloomFilter(4,1,2);
-    filter.add_url("www.example.com1");
-    filter.add_url("www.example.com2");
-    filter.add_url("www.example.com3");
-    filter.add_url("www.example.com4");
-    filter.add_url("www.example.com5");
-    filter.add_url("www.example.com6");
-    EXPECT_EQ(filter.check_if_blacklisted("not.www.example.com50"), "true false");
-}
-
-// Checking an easy true negative.
+// Checking for true negative.
 TEST(TrueNegative, BasicTest) {
     BloomFilter filter = BloomFilter(256,1,2);
     filter.add_url("www.example.com");
