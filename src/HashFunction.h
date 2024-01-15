@@ -12,9 +12,11 @@ using namespace std;
 /**
  * The parent of all hash functions.
  */
-class HashFunction{
+class HashFunction {
 public:
     virtual long hash_url(string url) = 0;
+
+    ~HashFunction() = default;
 };
 
 #endif //PART1ASP_HASHFUNCTION_H
