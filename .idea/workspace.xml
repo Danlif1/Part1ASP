@@ -8,7 +8,8 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="Part1ASP" targetName="CalcTests" />
+      <config projectName="Part1ASP" targetName="MainExecutable" />
+      <config projectName="Part1ASP" targetName="BloomFilterTests" />
       <config projectName="Part1ASP" targetName="gtest" />
       <config projectName="Part1ASP" targetName="gmock_main" />
       <config projectName="Part1ASP" targetName="gmock" />
@@ -76,13 +77,31 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Google Test.TruePositive.LongTest">
+  <component name="RunManager" selected="CTest Application.All CTest">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BloomFilterTests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Part1ASP" TARGET_NAME="BloomFilterTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Part1ASP" RUN_TARGET_NAME="BloomFilterTests" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SumTest.BasicTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Part1ASP" TARGET_NAME="CalcTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Part1ASP" RUN_TARGET_NAME="CalcTests" TEST_CLASS="SumTest" TEST_METHOD="BasicTest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TruePositive.BasicTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" TEST_CLASS="TruePositive" TEST_METHOD="BasicTest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TruePositive.HashesTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" TEST_CLASS="TruePositive" TEST_METHOD="HashesTest" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -94,7 +113,7 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalcTests" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Part1ASP" TARGET_NAME="CalcTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Part1ASP" RUN_TARGET_NAME="CalcTests">
+    <configuration name="MainExecutable" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Part1ASP" TARGET_NAME="MainExecutable" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Part1ASP" RUN_TARGET_NAME="MainExecutable">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -136,17 +155,21 @@
       <item itemvalue="CMake Application.gmock_main" />
       <item itemvalue="CMake Application.gtest" />
       <item itemvalue="CMake Application.gtest_main" />
-      <item itemvalue="CMake Application.CalcTests" />
+      <item itemvalue="CMake Application.MainExecutable" />
       <item itemvalue="CTest Application.All CTest" />
       <item itemvalue="CTest Application.CalcTests" />
+      <item itemvalue="Google Test.BloomFilterTests" />
+      <item itemvalue="Google Test.TruePositive.BasicTest" />
+      <item itemvalue="Google Test.TruePositive.HashesTest" />
       <item itemvalue="Google Test.TruePositive.LongTest" />
       <item itemvalue="Google Test.SumTest.BasicTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.TruePositive.BasicTest" />
+        <item itemvalue="Google Test.TruePositive.HashesTest" />
         <item itemvalue="Google Test.TruePositive.LongTest" />
         <item itemvalue="Google Test.SumTest.BasicTest" />
-        <item itemvalue="CMake Application.CalcTests" />
         <item itemvalue="CTest Application.CalcTests" />
       </list>
     </recent_temporary>

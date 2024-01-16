@@ -21,10 +21,10 @@ BloomFilter::BloomFilter(){
         // Getting the type of function.
         cin >> num_of_func;
         switch (num_of_func) {
-            case (1):
+            case 1:
                 hash_functions.push_back(new HashOnce());
                 break;
-            case (2):
+            case 2:
                 hash_functions.push_back(new HashTwice());
                 break;
             default:
@@ -34,19 +34,21 @@ BloomFilter::BloomFilter(){
 }
 
 
-BloomFilter::BloomFilter(int size_of_filter,int func1, int func2){
+BloomFilter::BloomFilter(unsigned long size_of_filter,const vector<int>& Hashes){
     bloom_filter_size = size_of_filter;
-    if (func1 == 1) {
-        hash_functions.push_back(new HashOnce);
-    } else {
-        hash_functions.push_back(new HashTwice);
+    for (int func : Hashes) {
+        switch (func) {
+            case 1:
+                hash_functions.push_back(new HashOnce);
+                break;
+            case 2:
+                hash_functions.push_back(new HashTwice);
+                break;
+            default:
+                throw invalid_argument("invalid argument");
+        }
     }
-    if (func2 == 1) {
-        hash_functions.push_back(new HashOnce);
-    } else {
-        hash_functions.push_back(new HashTwice);
-    }
-    filter =  vector<bool>(bloom_filter_size);
+    filter = vector<bool>(bloom_filter_size);
 }
 
 // Getting the blacklisted urls in a vector format.
@@ -63,9 +65,14 @@ void  BloomFilter::add_url(string added_url) {
     url_blacklist.push_back(added_url);
 
     // Perform hashing to url using all functions of current filter and add them to the bloom filter.
+    unsigned long hashed_url = 0;
     for (HashFunction* hash : hash_functions) {
-        long hashed_url = hash->hash_url(added_url);
-        long hashed_index = hashed_url % bloom_filter_size;
+        if (hashed_url == 0) {
+            hashed_url = hash->hash_url(added_url);
+        } else {
+            hashed_url = hash->hash_url(to_string(hashed_url));
+        }
+        unsigned long hashed_index = hashed_url % bloom_filter_size;
         filter[hashed_index] = true;
     }
 }
@@ -76,16 +83,21 @@ void  BloomFilter::add_url(string added_url) {
  */
 string BloomFilter::check_if_blacklisted(string checked_url){
     string answer = "false";
+    unsigned long hashed_url = 0;
     for (HashFunction* hash : hash_functions) {
-        long hashed_url = hash->hash_url(checked_url);
-        long hashed_index = hashed_url % bloom_filter_size;
+        if (hashed_url == 0) {
+            hashed_url = hash->hash_url(checked_url);
+        } else {
+            hashed_url = hash->hash_url(to_string(hashed_url));
+        }
+        unsigned long hashed_index = hashed_url % bloom_filter_size;
         if(!filter[hashed_index]) {
             return answer;
         }
     }
     answer = "true ";
     // Iterate through blacklist, and search for checked url.
-    for(string s : get_url_blacklist()) {
+    for(const string& s : get_url_blacklist()) {
         if (s == checked_url) {
             answer += "true";
             return answer;

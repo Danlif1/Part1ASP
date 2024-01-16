@@ -12,7 +12,9 @@ using namespace std;
 // It's a hash function, so it inherits from HashFunction.
 class HashTwice: public HashFunction {
     public:
-        long hash_url(string url);
+        unsigned long hash_url(string url);
+        ~HashTwice() = default;
+
 };
 
 #endif //PART1ASP_HASHTWICE_H
