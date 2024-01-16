@@ -15,7 +15,5 @@ RUN apt-get update && \
 RUN cmake -B build -S . && \
     cmake --build build
 
-RUN ls -l
-
 # Command to run when the container starts.
 CMD ["ctest --test-dir build --output-on-failure"]
