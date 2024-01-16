@@ -32,6 +32,7 @@ TEST(TrueNegative, BasicTest) {
 }
 
 // Checking for a lot of hash functions.
+
 TEST(TruePositive, HashesTest) {
     BloomFilter filter = BloomFilter(256,{1,2,1,2,1,1,1,2});
     filter.add_url("www.example.com");
@@ -59,7 +60,8 @@ TEST(TrueNegative, HashesTest) {
     EXPECT_EQ(filter.check_if_blacklisted("www.example.com1"), "false");
 }
 
-// Checking for a lot of hash functions.
+// Checking for a lot of hashed values.
+
 TEST(TruePositive, LongTest) {
     vector<int> funcs;
     for (int i = 0; i < 100; i++) {

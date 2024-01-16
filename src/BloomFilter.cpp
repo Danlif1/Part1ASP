@@ -7,7 +7,7 @@
 using namespace std;
 
 /**
- * Bloom filter constructor.
+ * Bloom filter constructor for manual run.
  */
 BloomFilter::BloomFilter(){
     // Getting the size of the bloom filter.
@@ -33,9 +33,15 @@ BloomFilter::BloomFilter(){
     }
 }
 
-
+/**
+ * Constructor for tests.
+ * In tests we can't get input from the user therefore we represent the input in a vector.
+ * @param size_of_filter The size of the Bloom filter array.
+ * @param Hashes The functions for the Bloom filter.
+ */
 BloomFilter::BloomFilter(unsigned long size_of_filter,const vector<int>& Hashes){
     bloom_filter_size = size_of_filter;
+    // For each int in the vector we get we check if it's function 1 or function 2 and work accordingly.
     for (int func : Hashes) {
         switch (func) {
             case 1:
@@ -48,6 +54,7 @@ BloomFilter::BloomFilter(unsigned long size_of_filter,const vector<int>& Hashes)
                 throw invalid_argument("invalid argument");
         }
     }
+    // Initializing filter.
     filter = vector<bool>(bloom_filter_size);
 }
 
@@ -107,8 +114,11 @@ string BloomFilter::check_if_blacklisted(string checked_url){
     return answer;
 }
 
-
+/**
+ * Destructor for Bloom filter.
+ */
 BloomFilter::~BloomFilter() {
+    // Destroying each hash function.
     for (HashFunction* hash : hash_functions) {
         delete hash;
     }
