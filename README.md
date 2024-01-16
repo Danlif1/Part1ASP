@@ -2,16 +2,16 @@
 
 ## Made by Daniel Lifshitz, Itamar Berger (Before he got צו 8), Yishai Nisim (Who was exempted from this part)
 
-### In this part we implemented Bloom filter.
+### In this part we implemented a Bloom filter algorithm.
 
-In this part we used a Bloom filter for a fast way to check if a given url is blacklisted.
-A Bloom filter can return false positives so we used a normal check in case of a positive to check if its a false positive.
+In this part, we used a Bloom filter as a fast way to check if a given URL is blacklisted.
+A Bloom filter can return false positives so we used a normal check in case of a positive to check if it's a false positive.
 
 ## Src
 
 ### BloomFilter.h/cpp
 
-In this file we hold all the functions bloom filter use, checking if a url is blacklisted, blacklisting a url, constructing url, and getting all blacklisted urls.
+In this file we hold all the functions Bloom filter use, checking if a URL is blacklisted, blacklisting a URL, constructing the Bloom filter, getting all blacklisted URLs, and destroying the Bloom filter.
 
 ### HashFunction.h
 
@@ -41,11 +41,35 @@ The main function of the tests.
 
 ## .github
 
-holds the code for the docker.
+Holds the code for the docker.
+And the auto tests.
 
-## Not in folder.
+## Not in a folder.
 
 ### CMakeLists.txt
 
-Holds the code for the compiler to run using tests.
-If you want to run the code through the terminal without tests go to the file and all the code without # turn to # and all the code with # turn to without.
+Holds the code for the compiler to run tests, and the code to run the code manually.
+
+### Dockerfile
+
+Holds the code to tell the cd.yml file what to do.
+
+## How to run.
+
+### Manually
+
+'''
+cmake -B build -S .                       
+cmake --build build
+cd cmake-build-debug/
+./MainExecutable
+'''
+
+### Tests
+
+'''
+cmake -B build -S .                       
+cmake --build build
+ctest --test-dir build --output-on-failure
+'''
+
