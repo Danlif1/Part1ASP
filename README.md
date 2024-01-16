@@ -58,18 +58,17 @@ Holds the code to tell the cd.yml file what to do.
 
 ### Manually
 
-'''
+׳׳׳
 cmake -B build -S .                       
 cmake --build build
 cd cmake-build-debug/
 ./MainExecutable
-'''
-
+׳׳׳
 ### Tests
 
-'''
+׳׳׳
 cmake -B build -S .                       
 cmake --build build
 ctest --test-dir build --output-on-failure
-'''
+׳׳׳
 
