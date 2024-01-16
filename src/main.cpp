@@ -16,7 +16,8 @@ int main(int argc, char** argv){
      * 1: Add url to the blacklist.
      * 2: Check if the url is blacklisted.
      */
-    int task;
+    string temp_task;
+    int task = 0;
     // The url we get.
     string url;
     // Initializing the Bloom filter.
@@ -27,9 +28,19 @@ int main(int argc, char** argv){
         /**
          * Getting both the task (int 1/2) and the url (string)
          */
-        cin >> task >> url;
-
+        cin >> temp_task;
+        try {
+            if (stoi(temp_task) == 1 || stoi(temp_task) == 2) {
+                task = stoi(temp_task);
+            } else {
+                continue;
+            }
+        } catch (exception e) {
+            // In case temp_task isn't int.
+            continue;
+        }
         // Switching depending on the value of the task.
+        cin >> url;
         switch(task) {
 
             case 1: {
@@ -46,7 +57,7 @@ int main(int argc, char** argv){
 
             default: {
                 // We got a value we shouldn't get, so we tell that to the user and try again.
-                cout<<"invalid input, please try again";
+                cout << "You shouldn't get here!!!";
             }
         }
     }
