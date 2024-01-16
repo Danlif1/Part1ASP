@@ -12,7 +12,7 @@ using namespace std;
 // It's a hash function, so it inherits from HashFunction.
 class HashOnce: public HashFunction {
     public:
-        unsigned long hash_url(string url) override;
+        unsigned long hashURL(string url) override;
         ~HashOnce() = default;
 };
 

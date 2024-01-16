@@ -61,8 +61,7 @@ Holds the code to tell the cd.yml file what to do.
 ```
 cmake -B build -S .                       
 cmake --build build
-cd cmake-build-debug/
-./MainExecutable
+./build/MainExecutable
 ```
 
 ### Tests
@@ -72,5 +71,16 @@ cmake -B build -S .
 cmake --build build
 ctest --test-dir build --output-on-failure
 ```
+or
+
+```
+cmake -B build -S .                       
+cmake --build build
+./build/BloomFilterTests
+```
+
+## Jira
+
+We worked with Jira to document our progress with each step.
 
 
