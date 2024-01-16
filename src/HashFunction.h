@@ -14,7 +14,7 @@ using namespace std;
  */
 class HashFunction {
 public:
-    virtual unsigned long hash_url(string url) = 0;
+    virtual unsigned long hashURL(string url) = 0;
     virtual ~HashFunction() = default;
 };
 

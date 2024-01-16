@@ -11,21 +11,21 @@ using namespace std;
  */
 BloomFilter::BloomFilter(){
     // Getting the size of the bloom filter.
-    cin >> bloom_filter_size;
+    cin >> bloomFilterSize;
     // Initial an array of bits to represent a bloom filter.
-    filter = vector<bool>(bloom_filter_size);
+    filter = vector<bool>(bloomFilterSize);
     // Initializing the input for the type of function.
-    int num_of_func;
+    int numOfFunc;
     // Iterate while user is typing hash functions for our bloom filter.
     while (cin.get() != '\n') {
         // Getting the type of function.
-        cin >> num_of_func;
-        switch (num_of_func) {
+        cin >> numOfFunc;
+        switch (numOfFunc) {
             case 1:
-                hash_functions.push_back(new HashOnce());
+                hashFunctions.push_back(new HashOnce());
                 break;
             case 2:
-                hash_functions.push_back(new HashTwice());
+                hashFunctions.push_back(new HashTwice());
                 break;
             default:
                 throw invalid_argument("invalid argument");
@@ -36,76 +36,76 @@ BloomFilter::BloomFilter(){
 /**
  * Constructor for tests.
  * In tests we can't get input from the user therefore we represent the input in a vector.
- * @param size_of_filter The size of the Bloom filter array.
+ * @param sizeOfFilter The size of the Bloom filter array.
  * @param Hashes The functions for the Bloom filter.
  */
-BloomFilter::BloomFilter(unsigned long size_of_filter,const vector<int>& Hashes){
-    bloom_filter_size = size_of_filter;
+BloomFilter::BloomFilter(unsigned long sizeOfFilter, const vector<int>& Hashes){
+    bloomFilterSize = sizeOfFilter;
     // For each int in the vector we get we check if it's function 1 or function 2 and work accordingly.
     for (int func : Hashes) {
         switch (func) {
             case 1:
-                hash_functions.push_back(new HashOnce);
+                hashFunctions.push_back(new HashOnce);
                 break;
             case 2:
-                hash_functions.push_back(new HashTwice);
+                hashFunctions.push_back(new HashTwice);
                 break;
             default:
                 throw invalid_argument("invalid argument");
         }
     }
     // Initializing filter.
-    filter = vector<bool>(bloom_filter_size);
+    filter = vector<bool>(bloomFilterSize);
 }
 
 // Getting the blacklisted urls in a vector format.
-vector<string> BloomFilter::get_url_blacklist(){
-    return url_blacklist;
+vector<string> BloomFilter::getUrlBlacklist(){
+    return urlBlacklist;
 }
 
 /**
  * Adding a url to the blacklist.
- * @param added_url The url we want to add.
+ * @param addedUrl The url we want to add.
  */
-void  BloomFilter::add_url(string added_url) {
+void  BloomFilter::addUrl(string addedUrl) {
     // add current url to blacklist (list of explicit urls).
-    url_blacklist.push_back(added_url);
+    urlBlacklist.push_back(addedUrl);
 
     // Perform hashing to url using all functions of current filter and add them to the bloom filter.
-    unsigned long hashed_url = 0;
-    for (HashFunction* hash : hash_functions) {
-        if (hashed_url == 0) {
-            hashed_url = hash->hash_url(added_url);
+    unsigned long hashedUrl = 0;
+    for (HashFunction* hash : hashFunctions) {
+        if (hashedUrl == 0) {
+            hashedUrl = hash->hashURL(addedUrl);
         } else {
-            hashed_url = hash->hash_url(to_string(hashed_url));
+            hashedUrl = hash->hashURL(to_string(hashedUrl));
         }
-        unsigned long hashed_index = hashed_url % bloom_filter_size;
-        filter[hashed_index] = true;
+        unsigned long hashedIndex = hashedUrl % bloomFilterSize;
+        filter[hashedIndex] = true;
     }
 }
 
 /**
  * Checking if the url is blacklisted.
- * @param checked_url The url we want to check.
+ * @param checkedUrl The url we want to check.
  */
-string BloomFilter::check_if_blacklisted(string checked_url){
+string BloomFilter::checkIfBlacklisted(string checkedUrl){
     string answer = "false";
-    unsigned long hashed_url = 0;
-    for (HashFunction* hash : hash_functions) {
-        if (hashed_url == 0) {
-            hashed_url = hash->hash_url(checked_url);
+    unsigned long hashedUrl = 0;
+    for (HashFunction* hash : hashFunctions) {
+        if (hashedUrl == 0) {
+            hashedUrl = hash->hashURL(checkedUrl);
         } else {
-            hashed_url = hash->hash_url(to_string(hashed_url));
+            hashedUrl = hash->hashURL(to_string(hashedUrl));
         }
-        unsigned long hashed_index = hashed_url % bloom_filter_size;
-        if(!filter[hashed_index]) {
+        unsigned long hashedIndex = hashedUrl % bloomFilterSize;
+        if(!filter[hashedIndex]) {
             return answer;
         }
     }
     answer = "true ";
     // Iterate through blacklist, and search for checked url.
-    for(const string& s : get_url_blacklist()) {
-        if (s == checked_url) {
+    for(const string& s : getUrlBlacklist()) {
+        if (s == checkedUrl) {
             answer += "true";
             return answer;
         }
@@ -119,7 +119,7 @@ string BloomFilter::check_if_blacklisted(string checked_url){
  */
 BloomFilter::~BloomFilter() {
     // Destroying each hash function.
-    for (HashFunction* hash : hash_functions) {
+    for (HashFunction* hash : hashFunctions) {
         delete hash;
     }
 }

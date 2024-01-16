@@ -8,56 +8,55 @@
 // Checking for true positive
 TEST(TruePositive, BasicTest) {
     BloomFilter filter = BloomFilter(256, {1, 2});
-    cout << "adding one" << endl;
-    filter.add_url("www.example.com");
+    filter.addUrl("www.example.com");
     // Check if added url appears on explicit urls blacklist.
-    EXPECT_EQ(filter.check_if_blacklisted("www.example.com"), "true true");
+    EXPECT_EQ(filter.checkIfBlacklisted("www.example.com"), "true true");
 }
 
 
 // Checking for false positive.
 TEST(FalsePositive, BasicTest) {
     BloomFilter filter(1,{1,2});
-    filter.add_url("www.example.com");
+    filter.addUrl("www.example.com");
     // Check if added url appears on explicit urls blacklist.
-    EXPECT_EQ(filter.check_if_blacklisted("www.example.com1"), "true false");
+    EXPECT_EQ(filter.checkIfBlacklisted("www.example.com1"), "true false");
 }
 
 // Checking for true negative.
 TEST(TrueNegative, BasicTest) {
-      BloomFilter filter = BloomFilter(256,{1,2});
-      filter.add_url("www.example.com");
-//    // Check if added url appears on explicit urls blacklist.
-      EXPECT_EQ(filter.check_if_blacklisted("www.example.com1"), "false");
+    BloomFilter filter = BloomFilter(256,{1,2});
+    filter.addUrl("www.example.com");
+    // Check if added url appears on explicit urls blacklist.
+    EXPECT_EQ(filter.checkIfBlacklisted("www.example.com1"), "false");
 }
 
 // Checking for a lot of hash functions.
 
 TEST(TruePositive, HashesTest) {
     BloomFilter filter = BloomFilter(256,{1,2,1,2,1,1,1,2});
-    filter.add_url("www.example.com");
+    filter.addUrl("www.example.com");
     // Check if added url appears on explicit urls blacklist.
-    EXPECT_EQ(filter.check_if_blacklisted("www.example.com"), "true true");
+    EXPECT_EQ(filter.checkIfBlacklisted("www.example.com"), "true true");
 }
 
 
 TEST(FalsePositive, HashesTest) {
     BloomFilter filter = BloomFilter(5,{1,2,1,2,1,1,1,2});
-    filter.add_url("www.example.com");
-    filter.add_url("www.example.com2");
-    filter.add_url("www.example.com3");
-    filter.add_url("www.example.com4");
-    filter.add_url("www.example.com5");
-    filter.add_url("www.example.com6");
+    filter.addUrl("www.example.com");
+    filter.addUrl("www.example.com2");
+    filter.addUrl("www.example.com3");
+    filter.addUrl("www.example.com4");
+    filter.addUrl("www.example.com5");
+    filter.addUrl("www.example.com6");
 
-    EXPECT_EQ(filter.check_if_blacklisted("www.example.com1"), "true false");
+    EXPECT_EQ(filter.checkIfBlacklisted("www.example.com1"), "true false");
 }
 
 TEST(TrueNegative, HashesTest) {
     BloomFilter filter = BloomFilter(256,{1,2,1,2,1,1,1,2});
-    filter.add_url("www.example.com");
-//    // Check if added url appears on explicit urls blacklist.
-    EXPECT_EQ(filter.check_if_blacklisted("www.example.com1"), "false");
+    filter.addUrl("www.example.com");
+    // Check if added url appears on explicit urls blacklist.
+    EXPECT_EQ(filter.checkIfBlacklisted("www.example.com1"), "false");
 }
 
 // Checking for a lot of hashed values.
@@ -69,11 +68,11 @@ TEST(TruePositive, LongTest) {
     }
     BloomFilter filter = BloomFilter(3000,funcs);
     for (int i = 0; i < 1000; i++) {
-        filter.add_url("www.example.com" + to_string(i));
+        filter.addUrl("www.example.com" + to_string(i));
     }
     // Check if added url appears on explicit urls blacklist.
     for (int i = 0; i < 1000; i++) {
-        EXPECT_EQ(filter.check_if_blacklisted("www.example.com" + to_string(i)), "true true");
+        EXPECT_EQ(filter.checkIfBlacklisted("www.example.com" + to_string(i)), "true true");
     }
 }
 
@@ -85,10 +84,10 @@ TEST(FalsePositive, LongTest) {
     }
     BloomFilter filter = BloomFilter(1000,funcs);
     for (int i = 0; i < 2000; i++) {
-        filter.add_url("www.example.com" + to_string(i));
+        filter.addUrl("www.example.com" + to_string(i));
     }
     for (int i = 2001; i < 3000; i++) {
-        EXPECT_EQ(filter.check_if_blacklisted("www.example.com" + to_string(i)), "true false");
+        EXPECT_EQ(filter.checkIfBlacklisted("www.example.com" + to_string(i)), "true false");
     }
 }
 
@@ -99,10 +98,10 @@ TEST(TrueNegative, LongTest) {
     }
     BloomFilter filter = BloomFilter(300000,funcs);
     for (int i = 0; i < 200; i++) {
-        filter.add_url("www.example.com" + to_string(i));
+        filter.addUrl("www.example.com" + to_string(i));
     }
     for (int i = 201; i < 301; i++) {
-        EXPECT_EQ(filter.check_if_blacklisted("www.example.com" + to_string(i)), "false");
+        EXPECT_EQ(filter.checkIfBlacklisted("www.example.com" + to_string(i)), "false");
     }
 }
 

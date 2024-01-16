@@ -17,24 +17,24 @@ using namespace std;
 class BloomFilter {
     private:
         // The array bloom filter uses.
-        vector<bool>filter;
+        vector<bool> filter;
         // The size of the array of the bloom filter.
-        unsigned long bloom_filter_size;
+        unsigned long bloomFilterSize;
         // The array of the blacklisted urls, in case the bloom filter gives a false positive.
-        vector<string> url_blacklist = std::vector<string>();
+        vector<string> urlBlacklist = std::vector<string>();
         // Array of functions used for filtering urls to blacklist.
-        vector<HashFunction*> hash_functions;
+        vector<HashFunction*> hashFunctions;
     public:
         // Default constructor.
         BloomFilter();
         // Non default contractor, gets the size of the bloom filter and
-        BloomFilter(unsigned long size_of_filter, const vector<int>& Hashes);
+        BloomFilter(unsigned long sizeOfFilter, const vector<int>& Hashes);
         // Adding the url to the blacklist.
-        void add_url(string added_url);
+        void addUrl(string addedUrl);
         // Getting the blacklisted urls in a vector format.
-        vector<string> get_url_blacklist();
+        vector<string> getUrlBlacklist();
         // Checking if a url is blacklisted.
-        string check_if_blacklisted(string checked_url);
+        string checkIfBlacklisted(string checkedUrl);
         // Destructor.
         ~BloomFilter();
 };
