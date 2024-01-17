@@ -11,6 +11,7 @@
 #include "HashOnce.h"
 #include "HashTwice.h"
 #include <stdexcept>
+#include <sstream>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ class BloomFilter {
         // The array bloom filter uses.
         vector<bool> filter;
         // The size of the array of the bloom filter.
-        unsigned long bloomFilterSize;
+        unsigned long bloomFilterSize = 0;
         // The array of the blacklisted urls, in case the bloom filter gives a false positive.
         vector<string> urlBlacklist = std::vector<string>();
         // Array of functions used for filtering urls to blacklist.

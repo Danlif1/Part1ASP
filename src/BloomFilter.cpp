@@ -10,17 +10,48 @@ using namespace std;
  * Bloom filter constructor for manual run.
  */
 BloomFilter::BloomFilter(){
-    // Getting the size of the bloom filter.
-    cin >> bloomFilterSize;
-    // Initial an array of bits to represent a bloom filter.
-    filter = vector<bool>(bloomFilterSize);
-    // Initializing the input for the type of function.
-    int numOfFunc;
+    // Getting the size of the bloom filter and the hashes.
+    string tempBloomFilter;
+    vector<int> v;
+    while (!bloomFilterSize) {
+        getline(cin,tempBloomFilter);
+
+        // constructing stream from the string
+        stringstream ss(tempBloomFilter);
+
+        // declaring vector to store the string after split
+        v.clear();
+
+        // using while loop until the getline condition is
+        // satisfied
+        // ' ' represent split the string whenever a space is
+        // found in the original string
+        bool first = true;
+        while (getline(ss, tempBloomFilter, ' ')) {
+            if (first) {
+                try {
+                    bloomFilterSize = stoul(tempBloomFilter);
+                } catch (exception e) {
+                    break;
+                }
+                first = false;
+            }
+            else {
+                try {
+                    // store token string in the vector
+                    int func = stoi(tempBloomFilter);
+                    if (func == 1 || func == 2) {
+                        v.push_back(stoi(tempBloomFilter));
+                    }
+                } catch (exception e) {
+                    continue;
+                }
+            }
+        }
+    }
     // Iterate while user is typing hash functions for our bloom filter.
-    while (cin.get() != '\n') {
-        // Getting the type of function.
-        cin >> numOfFunc;
-        switch (numOfFunc) {
+    for (int func : v) {
+        switch (func) {
             case 1:
                 hashFunctions.push_back(new HashOnce());
                 break;
@@ -31,6 +62,9 @@ BloomFilter::BloomFilter(){
                 throw invalid_argument("invalid argument");
         }
     }
+    // Initial an array of bits to represent a bloom filter.
+    filter = vector<bool>(bloomFilterSize);
+
 }
 
 /**
