@@ -89,3 +89,6 @@ I'm not sure how my partner worked with it because he left before I was able to 
 But what I did was to run the tests on my computer and if it worked to push it into GitHub and if it also worked, to add more tests until I was positive my code worked perfectly.
 It helped me catch the bug where hash returns unsigned long and my partner used long.
 
+## Docker Hub
+
+I used the docker hub to hold a dockerized version of my code.
