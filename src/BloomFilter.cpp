@@ -104,18 +104,13 @@ vector<string> BloomFilter::getUrlBlacklist(){
  * Adding a url to the blacklist.
  * @param addedUrl The url we want to add.
  */
-void  BloomFilter::addUrl(string addedUrl) {
+void  BloomFilter::addUrl(const string& addedUrl) {
     // add current url to blacklist (list of explicit urls).
     urlBlacklist.push_back(addedUrl);
 
     // Perform hashing to url using all functions of current filter and add them to the bloom filter.
-    unsigned long hashedUrl = 0;
     for (HashFunction* hash : hashFunctions) {
-        if (hashedUrl == 0) {
-            hashedUrl = hash->hashURL(addedUrl);
-        } else {
-            hashedUrl = hash->hashURL(to_string(hashedUrl));
-        }
+        unsigned long hashedUrl = hash->hashURL(addedUrl);
         unsigned long hashedIndex = hashedUrl % bloomFilterSize;
         filter[hashedIndex] = true;
     }
@@ -125,15 +120,10 @@ void  BloomFilter::addUrl(string addedUrl) {
  * Checking if the url is blacklisted.
  * @param checkedUrl The url we want to check.
  */
-string BloomFilter::checkIfBlacklisted(string checkedUrl){
+string BloomFilter::checkIfBlacklisted(const string& checkedUrl){
     string answer = "false";
-    unsigned long hashedUrl = 0;
     for (HashFunction* hash : hashFunctions) {
-        if (hashedUrl == 0) {
-            hashedUrl = hash->hashURL(checkedUrl);
-        } else {
-            hashedUrl = hash->hashURL(to_string(hashedUrl));
-        }
+        unsigned long hashedUrl = hash->hashURL(checkedUrl);
         unsigned long hashedIndex = hashedUrl % bloomFilterSize;
         if(!filter[hashedIndex]) {
             return answer;
