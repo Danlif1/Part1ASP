@@ -16,4 +16,4 @@ RUN cmake -B build -S . && \
     cmake --build build
 
 # Command to run when the container starts.
-CMD ["ctest --test-dir build --output-on-failure"]
+CMD ["./build/MainExecutable"]
