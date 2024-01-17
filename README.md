@@ -83,4 +83,9 @@ cmake --build build
 
 We worked with Jira to document our progress with each step.
 
+## TDD
+
+I'm not sure how my partner worked with it because he left before I was able to ask,
+But what I did was to run the tests on my computer and if it worked to push it into GitHub and if it also worked, to add more tests until I was positive my code worked perfectly.
+It helped me catch the bug where hash returns unsigned long and my partner used long.
 
