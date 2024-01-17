@@ -10,24 +10,26 @@ using namespace std;
  * Bloom filter constructor for manual run.
  */
 BloomFilter::BloomFilter(){
-    // Getting the size of the bloom filter and the hashes.
+    // Initializing the size of the bloom filter and the hashes.
     string tempBloomFilter;
-    vector<int> v;
+    vector<int> hashes;
+    // Getting the size of the bloom filter and the hashes.
     while (!bloomFilterSize) {
+        // Getting the line.
         getline(cin,tempBloomFilter);
 
-        // constructing stream from the string
+        // constructing stream from the string.
         stringstream ss(tempBloomFilter);
 
-        // declaring vector to store the string after split
-        v.clear();
+        // clearing the vector to store the string after split in case we got a wrong input before.
+        hashes.clear();
 
-        // using while loop until the getline condition is
-        // satisfied
-        // ' ' represent split the string whenever a space is
-        // found in the original string
+        // A boolean for our first input (The Bloom filter size).
         bool first = true;
+        // using while loop until the getline condition is satisfied
+        // ' ' represent split the string whenever a space is found in the original string
         while (getline(ss, tempBloomFilter, ' ')) {
+            // The Bloom filter size.
             if (first) {
                 try {
                     bloomFilterSize = stoul(tempBloomFilter);
@@ -36,21 +38,22 @@ BloomFilter::BloomFilter(){
                 }
                 first = false;
             }
+            // The hashes vector.
             else {
                 try {
                     // store token string in the vector
                     int func = stoi(tempBloomFilter);
                     if (func == 1 || func == 2) {
-                        v.push_back(stoi(tempBloomFilter));
+                        hashes.push_back(stoi(tempBloomFilter));
                     }
                 } catch (exception e) {
-                    continue;
+                    break;
                 }
             }
         }
     }
-    // Iterate while user is typing hash functions for our bloom filter.
-    for (int func : v) {
+    // Iterate the hashes vector for our bloom filter.
+    for (int func : hashes) {
         switch (func) {
             case 1:
                 hashFunctions.push_back(new HashOnce());
