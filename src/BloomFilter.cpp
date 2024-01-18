@@ -34,6 +34,7 @@ BloomFilter::BloomFilter(){
                 try {
                     bloomFilterSize = stoul(tempBloomFilter);
                 } catch (exception e) {
+                    bloomFilterSize = 0;
                     break;
                 }
                 first = false;
@@ -45,8 +46,12 @@ BloomFilter::BloomFilter(){
                     int func = stoi(tempBloomFilter);
                     if (func == 1 || func == 2) {
                         hashes.push_back(stoi(tempBloomFilter));
+                    } else {
+                        bloomFilterSize = 0;
+                        break;
                     }
                 } catch (exception e) {
+                    bloomFilterSize = 0;
                     break;
                 }
             }
