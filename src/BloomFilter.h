@@ -30,12 +30,17 @@ class BloomFilter {
         BloomFilter();
         // Non default contractor, gets the size of the bloom filter and
         BloomFilter(unsigned long sizeOfFilter, const vector<int>& Hashes);
+        // The function that runs the code.
+        void run();
+
+        // All functions from here should be private but then can't be tested.
         // Adding the url to the blacklist.
-        void addUrl(string addedUrl);
+        void addUrl(const string& addedUrl);
         // Getting the blacklisted urls in a vector format.
         vector<string> getUrlBlacklist();
         // Checking if a url is blacklisted.
-        string checkIfBlacklisted(string checkedUrl);
+        string checkIfBlacklisted(const string& checkedUrl);
+
         // Destructor.
         ~BloomFilter();
 };
