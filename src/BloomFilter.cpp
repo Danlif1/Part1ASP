@@ -20,7 +20,7 @@ BloomFilter::BloomFilter(){
 
         // constructing stream from the string.
         stringstream ss(tempBloomFilter);
-
+        std::vector<int> usedHashes = {};
         // clearing the vector to store the string after split in case we got a wrong input before.
         hashes.clear();
 
@@ -45,7 +45,16 @@ BloomFilter::BloomFilter(){
                     // store token string in the vector
                     int func = stoi(tempBloomFilter);
                     if (func == 1 || func == 2) {
-                        hashes.push_back(stoi(tempBloomFilter));
+                        bool flag = false;
+                        for (int hash : usedHashes) {
+                            if (func == hash) {
+                                flag = true;
+                            }
+                        }
+                        if (!flag) {
+                            hashes.push_back(func);
+                            usedHashes.push_back(func);
+                        }
                     } else {
                         bloomFilterSize = 0;
                         break;
@@ -153,5 +162,55 @@ BloomFilter::~BloomFilter() {
     // Destroying each hash function.
     for (HashFunction* hash : hashFunctions) {
         delete hash;
+    }
+}
+
+void BloomFilter::run() {
+    /**
+     * The type of task we get.
+     * 1: Add url to the blacklist.
+     * 2: Check if the url is blacklisted.
+     */
+    string tempTask;
+    int task = 0;
+    // The url we get.
+    string url;
+    // Looping to wait for the user to input the task and url.
+    while (true){
+        /**
+         * Getting both the task (int 1/2) and the url (string)
+         */
+        cin >> tempTask;
+        try {
+            if (stoi(tempTask) == 1 || stoi(tempTask) == 2) {
+                task = stoi(tempTask);
+            } else {
+                continue;
+            }
+        } catch (exception e) {
+            // In case tempTask isn't int.
+            continue;
+        }
+        // Switching depending on the value of the task.
+        cin >> url;
+        switch(task) {
+
+            case 1: {
+                // Adding the url to the blacklist.
+                addUrl(url);
+                break;
+            }
+
+            case 2: {
+                // Checking if the url is blacklisted.
+                cout << checkIfBlacklisted(url) << endl;
+                break;
+            }
+
+            default: {
+                // We got a value we shouldn't get, so we tell that to the user and try again.
+                cout << "You shouldn't get here!!!";
+            }
+        }
     }
 }
