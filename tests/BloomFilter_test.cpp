@@ -48,6 +48,12 @@ TEST(FalsePositive, HashesTest) {
     filter.addUrl("www.example.com4");
     filter.addUrl("www.example.com5");
     filter.addUrl("www.example.com6");
+    filter.addUrl("www.example.com7");
+    filter.addUrl("www.example.com8");
+    filter.addUrl("www.example.com9");
+    filter.addUrl("www.example.com10");
+    filter.addUrl("www.example.com11");
+    filter.addUrl("www.example.com12");
 
     EXPECT_EQ(filter.checkIfBlacklisted("www.example.com1"), "true false");
 }
@@ -82,7 +88,7 @@ TEST(FalsePositive, LongTest) {
     for (int i = 0; i < 100; i++) {
         funcs.push_back(i%2 + 1);
     }
-    BloomFilter filter = BloomFilter(1000,funcs);
+    BloomFilter filter = BloomFilter(100,funcs);
     for (int i = 0; i < 2000; i++) {
         filter.addUrl("www.example.com" + to_string(i));
     }
