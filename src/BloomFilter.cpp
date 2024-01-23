@@ -1,5 +1,5 @@
 //
-// Created by Itamar Berger
+// Created by Itamar Berger, Daniel Lifshitz
 //
 
 #include "BloomFilter.h"
@@ -13,8 +13,9 @@ BloomFilter::BloomFilter(){
     // Initializing the size of the bloom filter and the hashes.
     string tempBloomFilter;
     vector<int> hashes;
+    hashes.clear();
     // Getting the size of the bloom filter and the hashes.
-    while (!bloomFilterSize) {
+    while (!bloomFilterSize || hashes.empty()) {
         // Getting the line.
         getline(cin,tempBloomFilter);
 
@@ -78,6 +79,7 @@ BloomFilter::BloomFilter(){
             default:
                 throw invalid_argument("invalid argument");
         }
+
     }
     // Initial an array of bits to represent a bloom filter.
     filter = vector<bool>(bloomFilterSize);

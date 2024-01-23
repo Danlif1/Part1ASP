@@ -1,5 +1,5 @@
 //
-// Created by Daniel Lifshitz on 11/01/2024.
+// Created by Itamar Berger, Daniel Lifshitz
 //
 
 #ifndef PART1ASP_BLOOMFILTER_H
@@ -30,10 +30,10 @@ class BloomFilter {
         BloomFilter();
         // Non default contractor, gets the size of the bloom filter and
         BloomFilter(unsigned long sizeOfFilter, const vector<int>& Hashes);
+
         // The function that runs the code.
         void run();
 
-        // All functions from here should be private but then can't be tested.
         // Adding the url to the blacklist.
         void addUrl(const string& addedUrl);
         // Getting the blacklisted urls in a vector format.
